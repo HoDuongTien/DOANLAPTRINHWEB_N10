@@ -1,0 +1,41 @@
+@model WebQLNhanSu.Models.NhanVien
+
+@{
+    ViewData["Title"] = "Xóa nhân viên";
+}
+
+<h2 class="mb-3 text-danger">Xác nhận xóa nhân viên</h2>
+
+<div class="card border-danger">
+    <div class="card-body">
+
+        <h5 class="text-danger">Bạn có chắc chắn muốn xóa nhân viên này?</h5>
+
+        <dl class="row mt-3">
+            <dt class="col-sm-4">Mã nhân viên</dt>
+            <dd class="col-sm-8">@Model.MaNhanVien</dd>
+
+            <dt class="col-sm-4">Tên nhân viên</dt>
+            <dd class="col-sm-8">@Model.TenNhanVien</dd>
+
+            <dt class="col-sm-4">Phòng ban</dt>
+            <dd class="col-sm-8">@Model.PhongBan?.TenPhongBan</dd>
+
+            <dt class="col-sm-4">Chức vụ</dt>
+            <dd class="col-sm-8">@Model.ChucVu?.TenChucVu</dd>
+        </dl>
+
+        <form asp-action="Delete" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="MaNhanVien" />
+
+            <button type="submit" class="btn btn-danger">
+                <i class="fa fa-trash"></i> Xóa
+            </button>
+            <a asp-action="Index" class="btn btn-secondary">
+                <i class="fa fa-arrow-left"></i> Hủy
+            </a>
+        </form>
+
+    </div>
+</div>

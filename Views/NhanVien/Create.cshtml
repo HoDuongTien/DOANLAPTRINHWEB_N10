@@ -1,0 +1,84 @@
+@model WebQLNhanSu.Models.NhanVien
+
+@{
+    ViewData["Title"] = "Thêm mới nhân viên";
+}
+
+<h2 class="mb-3">Thêm mới nhân viên</h2>
+
+<form asp-action="Create" method="post">
+    @Html.AntiForgeryToken()
+
+    <div asp-validation-summary="All" class="text-danger mb-2"></div>
+
+    <div class="row">
+        <div class="col-md-6">
+
+            <div class="mb-3">
+                <label class="form-label">Tên nhân viên</label>
+                <input asp-for="TenNhanVien" class="form-control" placeholder="Nhập tên nhân viên" />
+                <span asp-validation-for="TenNhanVien" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Ngày sinh</label>
+                <input asp-for="NgaySinh" asp-format="{0:yyyy-MM-dd}" type="date" class="form-control" />
+                <span asp-validation-for="NgaySinh" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Giới tính</label>
+                <select asp-for="GioiTinh" asp-items="ViewBag.GioiTinh" class="form-select"></select>
+                <span asp-validation-for="GioiTinh" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Số điện thoại</label>
+                <input asp-for="SoDienThoai" type="tel" class="form-control" placeholder="Nhập số điện thoại" />
+                <span asp-validation-for="SoDienThoai" class="text-danger"></span>
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="mb-3">
+                <label class="form-label">Địa chỉ</label>
+                <input asp-for="DiaChi" class="form-control" placeholder="Nhập địa chỉ" />
+                <span asp-validation-for="DiaChi" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Phòng ban</label>
+                <select asp-for="MaPhongBan" asp-items="ViewBag.PhongBan" class="form-select"></select>
+                <span asp-validation-for="MaPhongBan" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Chức vụ</label>
+                <select asp-for="MaChucVu" asp-items="ViewBag.ChucVu" class="form-select"></select>
+                <span asp-validation-for="MaChucVu" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Trình độ</label>
+                <select asp-for="MaTrinhDo" asp-items="ViewBag.TrinhDo" class="form-select"></select>
+                <span asp-validation-for="MaTrinhDo" class="text-danger"></span>
+            </div>
+
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success">
+        <i class="fa fa-save"></i> Lưu
+    </button>
+    <a asp-action="Index" class="btn btn-secondary">
+        <i class="fa fa-arrow-left"></i> Quay lại
+    </a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
