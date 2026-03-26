@@ -7,7 +7,7 @@ using WebQLNhanSu.Models;
 
 namespace WebQLNhanSu.Controllers
 {
-    //[Authorize(Roles = "Admin,HR")]
+    [Authorize(Roles = "Admin,HR")]
     public class NhanVienController : Controller
     {
         private readonly ApplicationDbContext _context;
