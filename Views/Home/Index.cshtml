@@ -1,8 +1,115 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Trang chủ";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="home-hero p-4 p-md-5 mb-4">
+    <div class="row align-items-center g-4">
+        <div class="col-lg-8">
+            <span class="badge bg-light text-primary fw-semibold mb-3 px-3 py-2 rounded-pill">
+                Hệ thống quản lý nhân sự HRM
+            </span>
+
+            <h1 class="fw-bold mb-3" style="font-size: 2.3rem;">
+                Website Quản lý Nhân sự
+            </h1>
+
+            <p class="hero-text mb-4">
+                Hệ thống hỗ trợ quản lý hồ sơ nhân viên, chấm công, nghỉ phép, bảng lương,
+                phòng ban, chức vụ và các nghiệp vụ nhân sự trên một nền tảng thống nhất.
+            </p>
+
+            <div class="d-flex flex-wrap gap-2">
+                <span class="btn btn-gradient disabled-btn">
+                    <i class="bi bi-person-circle me-1"></i> Hồ sơ cá nhân
+                </span>
+
+                <span class="btn btn-outline-soft disabled-btn">
+                    <i class="bi bi-clock-history me-1"></i> Chấm công
+                </span>
+
+                <span class="btn btn-outline-soft disabled-btn">
+                    <i class="bi bi-wallet2 me-1"></i> Lương
+                </span>
+
+                <span class="btn btn-outline-soft disabled-btn">
+                    <i class="bi bi-send me-1"></i> Nghỉ phép
+                </span>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="intro-card h-100">
+                <h4 class="intro-title fw-bold mb-3">Giới thiệu hệ thống</h4>
+                <p class="mb-0 intro-text">
+                    Website quản lý nhân sự giúp doanh nghiệp theo dõi nhân viên, chấm công,
+                    nghỉ phép và bảng lương một cách trực quan, nhanh chóng và hiệu quả.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4 mb-4">
+    <div class="col-md-4">
+        <div class="feature-card p-4 h-100">
+            <h4 class="fw-bold mb-3">
+                <i class="bi bi-person-badge me-2"></i>Nhân viên
+            </h4>
+            <p class="mb-0 text-muted">
+                Quản lý hồ sơ cá nhân, chấm công, nghỉ phép và theo dõi bảng lương.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="feature-card p-4 h-100">
+            <h4 class="fw-bold mb-3">
+                <i class="bi bi-briefcase me-2"></i>HR
+            </h4>
+            <p class="mb-0 text-muted">
+                Quản lý chấm công, duyệt nghỉ phép và tạo bảng lương cho nhân viên.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="feature-card p-4 h-100">
+            <h4 class="fw-bold mb-3">
+                <i class="bi bi-shield-lock me-2"></i>Admin
+            </h4>
+            <p class="mb-0 text-muted">
+                Quản trị hệ thống, phân quyền tài khoản và quản lý danh mục nền.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="main-function-card p-4">
+    <h2 class="fw-bold mb-4">Chức năng chính</h2>
+
+    <div class="row g-3">
+        <div class="col-md-6 col-lg-4">
+            <div class="box-feature">Quản lý hồ sơ nhân viên</div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="box-feature">Chấm công theo ngày</div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="box-feature">Nghỉ phép & phê duyệt</div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="box-feature">Quản lý bảng lương</div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="box-feature">Quản lý danh mục</div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="box-feature">Báo cáo & thống kê</div>
+        </div>
+    </div>
 </div>

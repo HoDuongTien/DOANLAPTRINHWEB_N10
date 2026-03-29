@@ -1,0 +1,65 @@
+@model WebQLNhanSu.Models.BangLuong
+
+@{
+    ViewData["Title"] = "Sửa bảng lương";
+}
+
+<h2>Sửa bảng lương</h2>
+
+<form asp-action="Edit" method="post">
+    @Html.AntiForgeryToken()
+
+    <input type="hidden" asp-for="MaBangLuong" />
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="MaNhanVien" class="form-label">Nhân viên</label>
+        <select asp-for="MaNhanVien" asp-items="ViewBag.NhanVien" class="form-select"></select>
+        <span asp-validation-for="MaNhanVien" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Thang" class="form-label">Tháng</label>
+        <input asp-for="Thang" class="form-control" />
+        <span asp-validation-for="Thang" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Nam" class="form-label">Năm</label>
+        <input asp-for="Nam" class="form-control" />
+        <span asp-validation-for="Nam" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="LuongCoBan" class="form-label">Lương cơ bản</label>
+        <input asp-for="LuongCoBan" class="form-control" />
+        <span asp-validation-for="LuongCoBan" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Thuong" class="form-label">Thưởng</label>
+        <input asp-for="Thuong" class="form-control" />
+        <span asp-validation-for="Thuong" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="KhauTru" class="form-label">Khấu trừ</label>
+        <input asp-for="KhauTru" class="form-control" />
+        <span asp-validation-for="KhauTru" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="TongLuong" class="form-label">Tổng lương</label>
+        <input asp-for="TongLuong" class="form-control" readonly />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Lưu</button>
+    <a asp-action="Manage" class="btn btn-secondary">Quay lại</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

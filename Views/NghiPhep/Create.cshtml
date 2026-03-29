@@ -1,0 +1,36 @@
+@model WebQLNhanSu.Models.NghiPhep
+
+<h2>Gửi đơn nghỉ phép</h2>
+
+<form asp-action="Create" method="post">
+    <input type="hidden" asp-for="MaNhanVien" />
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="TuNgay" class="form-label">Từ ngày</label>
+        <input asp-for="TuNgay" type="date" class="form-control" />
+        <span asp-validation-for="TuNgay" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="DenNgay" class="form-label">Đến ngày</label>
+        <input asp-for="DenNgay" type="date" class="form-control" />
+        <span asp-validation-for="DenNgay" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="LyDo" class="form-label">Lý do</label>
+        <textarea asp-for="LyDo" class="form-control"></textarea>
+        <span asp-validation-for="LyDo" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Gửi đơn</button>
+    <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

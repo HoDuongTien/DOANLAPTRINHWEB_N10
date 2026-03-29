@@ -1,0 +1,94 @@
+@model WebQLNhanSu.Models.NhanVien
+
+@{
+    ViewData["Title"] = "Hồ sơ cá nhân";
+}
+
+<div class="profile-card">
+    <div class="card card-modern p-4 p-md-5">
+        <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between mb-4">
+            <div>
+                <h2 class="section-title mb-1">Hồ sơ cá nhân</h2>
+                <p class="section-subtitle mb-0">Cập nhật thông tin cá nhân của nhân viên</p>
+            </div>
+            <span class="badge-soft mt-3 mt-md-0">Nhân sự</span>
+        </div>
+
+        <form asp-action="Edit" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <label asp-for="TenNhanVien" class="form-label">Tên nhân viên</label>
+                    <input asp-for="TenNhanVien" class="form-control" placeholder="Nhập tên nhân viên" />
+                    <span asp-validation-for="TenNhanVien" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="GioiTinh" class="form-label">Giới tính</label>
+                    <select asp-for="GioiTinh" asp-items="ViewBag.GioiTinh" class="form-select">
+                        <option value="">-- Chọn giới tính --</option>
+                    </select>
+                    <span asp-validation-for="GioiTinh" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="NgaySinh" class="form-label">Ngày sinh</label>
+                    <input asp-for="NgaySinh" type="date" class="form-control" />
+                    <span asp-validation-for="NgaySinh" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="SoDienThoai" class="form-label">Số điện thoại</label>
+                    <input asp-for="SoDienThoai" class="form-control" placeholder="Nhập số điện thoại" />
+                    <span asp-validation-for="SoDienThoai" class="text-danger"></span>
+                </div>
+
+                <div class="col-12">
+                    <label asp-for="DiaChi" class="form-label">Địa chỉ</label>
+                    <input asp-for="DiaChi" class="form-control" placeholder="Nhập địa chỉ" />
+                    <span asp-validation-for="DiaChi" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-4">
+                    <label asp-for="MaPhongBan" class="form-label">Phòng ban</label>
+                    <select asp-for="MaPhongBan" asp-items="ViewBag.PhongBan" class="form-select">
+                        <option value="">-- Chọn phòng ban --</option>
+                    </select>
+                    <span asp-validation-for="MaPhongBan" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-4">
+                    <label asp-for="MaChucVu" class="form-label">Chức vụ</label>
+                    <select asp-for="MaChucVu" asp-items="ViewBag.ChucVu" class="form-select">
+                        <option value="">-- Chọn chức vụ --</option>
+                    </select>
+                    <span asp-validation-for="MaChucVu" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-4">
+                    <label asp-for="MaTrinhDo" class="form-label">Trình độ</label>
+                    <select asp-for="MaTrinhDo" asp-items="ViewBag.TrinhDo" class="form-select">
+                        <option value="">-- Chọn trình độ --</option>
+                    </select>
+                    <span asp-validation-for="MaTrinhDo" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="d-flex flex-wrap gap-2 mt-4">
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-save me-1"></i>Lưu
+                </button>
+                <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left me-1"></i>Quay lại
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

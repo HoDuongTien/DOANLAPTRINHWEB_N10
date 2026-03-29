@@ -1,0 +1,103 @@
+@model IEnumerable<WebQLNhanSu.Models.ChamCong>
+
+@{
+    ViewData["Title"] = "Chấm công của tôi";
+}
+
+<h2>Chấm công của tôi</h2>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+@if (User.IsInRole("Employee"))
+{
+    <div class="card mb-4">
+        <div class="card-header">
+            <strong>Chấm công hôm nay</strong>
+        </div>
+        <div class="card-body">
+            <form asp-action="Create" method="post">
+                @Html.AntiForgeryToken()
+
+                <div class="mb-3">
+                    <label class="form-label">Ca làm việc</label>
+                    <select name="maCa" class="form-select">
+                        @if (ViewBag.CaLamViecs != null)
+                        {
+                            foreach (var ca in ViewBag.CaLamViecs)
+                            {
+                                <option value="@ca.MaCa">@ca.TenCa</option>
+                            }
+                        }
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Chấm công vào</button>
+            </form>
+        </div>
+    </div>
+}
+
+@if (User.IsInRole("Admin") || User.IsInRole("HR"))
+{
+    <div class="mb-3">
+        <a asp-action="Manage" class="btn btn-success">Quản lý chấm công</a>
+    </div>
+}
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Ngày làm</th>
+            <th>Ca</th>
+            <th>Giờ vào</th>
+            <th>Giờ ra</th>
+            <th>Số giờ làm</th>
+            <th>Giờ tăng ca</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.NgayLam.ToString("dd/MM/yyyy")</td>
+                    <td>@item.CaLamViec?.TenCa</td>
+                    <td>@(item.GioVao.HasValue ? item.GioVao.Value.ToString(@"hh\:mm") : "")</td>
+                    <td>@(item.GioRa.HasValue ? item.GioRa.Value.ToString(@"hh\:mm") : "")</td>
+                    <td>@item.SoGioLam.ToString("0.##")</td>
+                    <td>@item.GioTangCa.ToString("0.##")</td>
+                    <td>
+                        @if (User.IsInRole("Employee") && !item.GioRa.HasValue)
+                        {
+                            <form asp-action="CheckOut" method="post" class="d-inline">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="id" value="@item.MaChamCong" />
+                                <button type="submit" class="btn btn-warning btn-sm">Chấm công ra</button>
+                            </form>
+                        }
+                        else if (item.GioRa.HasValue)
+                        {
+                            <span class="text-success">Hoàn tất</span>
+                        }
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="7" class="text-center">Chưa có dữ liệu chấm công.</td>
+            </tr>
+        }
+    </tbody>
+</table>

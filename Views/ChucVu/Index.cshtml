@@ -1,0 +1,45 @@
+@model IEnumerable<WebQLNhanSu.Models.ChucVu>
+
+@{
+    ViewData["Title"] = "Danh sách chức vụ";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="section-title mb-0">Danh sách chức vụ</h2>
+    <a asp-action="Create" class="btn btn-primary">Thêm mới</a>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Mã chức vụ</th>
+            <th>Tên chức vụ</th>
+            <th>Lương cơ bản</th>
+            <th width="220">Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.MaChucVu</td>
+                    <td>@item.TenChucVu</td>
+                    <td>@item.LuongCoBan.ToString("N0")</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.MaChucVu" class="btn btn-info btn-sm">Chi tiết</a>
+                        <a asp-action="Edit" asp-route-id="@item.MaChucVu" class="btn btn-warning btn-sm">Sửa</a>
+                        <a asp-action="Delete" asp-route-id="@item.MaChucVu" class="btn btn-danger btn-sm">Xóa</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4" class="text-center">Chưa có dữ liệu chức vụ.</td>
+            </tr>
+        }
+    </tbody>
+</table>

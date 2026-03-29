@@ -1,0 +1,66 @@
+@model IEnumerable<WebQLNhanSu.Models.NghiPhep>
+
+@{
+    ViewData["Title"] = "Nghỉ phép của tôi";
+}
+
+<h2>Nghỉ phép của tôi</h2>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<p>
+    @if (User.IsInRole("Employee"))
+    {
+        <a asp-action="Create" class="btn btn-primary">
+            Gửi đơn nghỉ phép
+        </a>
+    }
+
+    @if (User.IsInRole("Admin") || User.IsInRole("HR"))
+    {
+        <a asp-action="Manage" class="btn btn-success">
+            Duyệt đơn nghỉ phép
+        </a>
+    }
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Từ ngày</th>
+            <th>Đến ngày</th>
+            <th>Lý do</th>
+            <th>Trạng thái</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.TuNgay.ToString("dd/MM/yyyy")</td>
+                    <td>@item.DenNgay.ToString("dd/MM/yyyy")</td>
+                    <td>@item.LyDo</td>
+                    <td>@item.TrangThaiNghiPhep</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4" class="text-center">
+                    Chưa có đơn nghỉ phép nào.
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

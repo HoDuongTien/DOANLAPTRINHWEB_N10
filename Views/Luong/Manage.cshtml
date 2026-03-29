@@ -1,0 +1,65 @@
+@model IEnumerable<WebQLNhanSu.Models.BangLuong>
+
+@{
+    ViewData["Title"] = "Quản lý bảng lương";
+}
+
+<h2>Quản lý bảng lương</h2>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Tạo bảng lương</a>
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Mã bảng lương</th>
+            <th>Nhân viên</th>
+            <th>Tháng</th>
+            <th>Năm</th>
+            <th>Lương cơ bản</th>
+            <th>Thưởng</th>
+            <th>Khấu trừ</th>
+            <th>Tổng lương</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.MaBangLuong</td>
+                    <td>@item.NhanVien?.TenNhanVien</td>
+                    <td>@item.Thang</td>
+                    <td>@item.Nam</td>
+                    <td>@item.LuongCoBan.ToString("N0")</td>
+                    <td>@item.Thuong.ToString("N0")</td>
+                    <td>@item.KhauTru.ToString("N0")</td>
+                    <td>@item.TongLuong.ToString("N0")</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.MaBangLuong" class="btn btn-sm btn-primary">Sửa</a>
+                        <a asp-action="Delete" asp-route-id="@item.MaBangLuong" class="btn btn-sm btn-danger">Xóa</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="9" class="text-center">Chưa có dữ liệu bảng lương.</td>
+            </tr>
+        }
+    </tbody>
+</table>

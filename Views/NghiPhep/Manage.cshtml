@@ -1,0 +1,72 @@
+@using WebQLNhanSu.Enums
+@model IEnumerable<WebQLNhanSu.Models.NghiPhep>
+
+@{
+    ViewData["Title"] = "Quản lý nghỉ phép";
+}
+
+<h2>Quản lý nghỉ phép</h2>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<div class="mb-3">
+    <a asp-action="Manage" class="btn btn-secondary btn-sm">Tất cả</a>
+    <a asp-action="Manage" asp-route-status="@TrangThaiNghiPhep.ChoDuyet" class="btn btn-warning btn-sm">Chờ duyệt</a>
+    <a asp-action="Manage" asp-route-status="@TrangThaiNghiPhep.DaDuyet" class="btn btn-success btn-sm">Đã duyệt</a>
+    <a asp-action="Manage" asp-route-status="@TrangThaiNghiPhep.TuChoi" class="btn btn-danger btn-sm">Từ chối</a>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Mã</th>
+            <th>Nhân viên</th>
+            <th>Từ ngày</th>
+            <th>Đến ngày</th>
+            <th>Lý do</th>
+            <th>Trạng thái</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.MaNghiPhep</td>
+                    <td>@item.NhanVien?.TenNhanVien</td>
+                    <td>@item.TuNgay.ToString("dd/MM/yyyy")</td>
+                    <td>@item.DenNgay.ToString("dd/MM/yyyy")</td>
+                    <td>@item.LyDo</td>
+                    <td>@item.TrangThaiNghiPhep</td>
+                    <td>
+                        @if (item.TrangThaiNghiPhep == TrangThaiNghiPhep.ChoDuyet)
+                        {
+                            <a asp-action="Duyet" asp-route-id="@item.MaNghiPhep" class="btn btn-sm btn-success">Duyệt</a>
+                            <a asp-action="TuChoi" asp-route-id="@item.MaNghiPhep" class="btn btn-sm btn-danger">Từ chối</a>
+                        }
+                        else
+                        {
+                            <span class="text-muted">Đã xử lý</span>
+                        }
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="7" class="text-center">Chưa có dữ liệu nghỉ phép.</td>
+            </tr>
+        }
+    </tbody>
+</table>

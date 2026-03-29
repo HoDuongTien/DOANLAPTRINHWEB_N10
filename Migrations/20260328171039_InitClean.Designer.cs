@@ -12,8 +12,8 @@ using WebQLNhanSu.Data;
 namespace WebQLNhanSu.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260326133223_InitIdentity")]
-    partial class InitIdentity
+    [Migration("20260328171039_InitClean")]
+    partial class InitClean
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -267,63 +267,6 @@ namespace WebQLNhanSu.Migrations
 
                             t.HasCheckConstraint("CK_BL_Tien", "[LuongCoBan] >= 0 AND [Thuong] >= 0 AND [KhauTru] >= 0");
                         });
-
-                    b.HasData(
-                        new
-                        {
-                            MaBangLuong = 1,
-                            KhauTru = 500000m,
-                            LuongCoBan = 5000000m,
-                            MaNhanVien = 1,
-                            Nam = 2024,
-                            Thang = 6,
-                            Thuong = 1000000m,
-                            TongLuong = 0m
-                        },
-                        new
-                        {
-                            MaBangLuong = 2,
-                            KhauTru = 800000m,
-                            LuongCoBan = 8000000m,
-                            MaNhanVien = 2,
-                            Nam = 2024,
-                            Thang = 6,
-                            Thuong = 1500000m,
-                            TongLuong = 0m
-                        },
-                        new
-                        {
-                            MaBangLuong = 3,
-                            KhauTru = 2000000m,
-                            LuongCoBan = 15000000m,
-                            MaNhanVien = 3,
-                            Nam = 2024,
-                            Thang = 6,
-                            Thuong = 3000000m,
-                            TongLuong = 0m
-                        },
-                        new
-                        {
-                            MaBangLuong = 4,
-                            KhauTru = 200000m,
-                            LuongCoBan = 3000000m,
-                            MaNhanVien = 4,
-                            Nam = 2024,
-                            Thang = 6,
-                            Thuong = 500000m,
-                            TongLuong = 0m
-                        },
-                        new
-                        {
-                            MaBangLuong = 5,
-                            KhauTru = 600000m,
-                            LuongCoBan = 5000000m,
-                            MaNhanVien = 1,
-                            Nam = 2024,
-                            Thang = 7,
-                            Thuong = 1200000m,
-                            TongLuong = 0m
-                        });
                 });
 
             modelBuilder.Entity("WebQLNhanSu.Models.CaLamViec", b =>
@@ -379,13 +322,6 @@ namespace WebQLNhanSu.Migrations
                             GioBatDau = new TimeSpan(0, 8, 0, 0, 0),
                             GioKetThuc = new TimeSpan(0, 17, 0, 0, 0),
                             TenCa = "Ca Hành Chính"
-                        },
-                        new
-                        {
-                            MaCa = 5,
-                            GioBatDau = new TimeSpan(0, 7, 0, 0, 0),
-                            GioKetThuc = new TimeSpan(0, 19, 0, 0, 0),
-                            TenCa = "Ca Linh Hoạt"
                         });
                 });
 
@@ -481,44 +417,6 @@ namespace WebQLNhanSu.Migrations
                             t.HasCheckConstraint("CK_ChamCong_Gio", "[SoGioLam] >= 0");
 
                             t.HasCheckConstraint("CK_ChamCong_OT", "[GioTangCa] >= 0");
-                        });
-
-                    b.HasData(
-                        new
-                        {
-                            MaChamCong = 1,
-                            GioTangCa = 2.0,
-                            MaCa = 1,
-                            MaNhanVien = 1,
-                            NgayLam = new DateTime(2024, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoGioLam = 8.0
-                        },
-                        new
-                        {
-                            MaChamCong = 2,
-                            GioTangCa = 0.0,
-                            MaCa = 2,
-                            MaNhanVien = 2,
-                            NgayLam = new DateTime(2024, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoGioLam = 8.0
-                        },
-                        new
-                        {
-                            MaChamCong = 3,
-                            GioTangCa = 1.0,
-                            MaCa = 3,
-                            MaNhanVien = 3,
-                            NgayLam = new DateTime(2024, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoGioLam = 8.0
-                        },
-                        new
-                        {
-                            MaChamCong = 4,
-                            GioTangCa = 0.0,
-                            MaCa = 4,
-                            MaNhanVien = 4,
-                            NgayLam = new DateTime(2024, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoGioLam = 8.0
                         });
                 });
 
@@ -619,45 +517,6 @@ namespace WebQLNhanSu.Migrations
                         {
                             t.HasCheckConstraint("CK_HopDong_Ngay", "[NgayKetThuc] IS NULL OR [NgayKetThuc] >= [NgayBatDau]");
                         });
-
-                    b.HasData(
-                        new
-                        {
-                            MaHopDong = 1,
-                            Luong = 0m,
-                            MaLoaiHopDong = 2,
-                            MaNhanVien = 1,
-                            NgayBatDau = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            TrangThai = "Đang hiệu lực"
-                        },
-                        new
-                        {
-                            MaHopDong = 2,
-                            Luong = 0m,
-                            MaLoaiHopDong = 2,
-                            MaNhanVien = 2,
-                            NgayBatDau = new DateTime(2021, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            TrangThai = "Đang hiệu lực"
-                        },
-                        new
-                        {
-                            MaHopDong = 3,
-                            Luong = 0m,
-                            MaLoaiHopDong = 2,
-                            MaNhanVien = 3,
-                            NgayBatDau = new DateTime(2019, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            TrangThai = "Đang hiệu lực"
-                        },
-                        new
-                        {
-                            MaHopDong = 4,
-                            Luong = 0m,
-                            MaLoaiHopDong = 1,
-                            MaNhanVien = 4,
-                            NgayBatDau = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            NgayKetThuc = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            TrangThai = "Đang hiệu lực"
-                        });
                 });
 
             modelBuilder.Entity("WebQLNhanSu.Models.LichSuNguoiDung", b =>
@@ -672,7 +531,7 @@ namespace WebQLNhanSu.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("MaTaiKhoan")
+                    b.Property<int>("MaNhanVien")
                         .HasColumnType("int");
 
                     b.Property<string>("MoTa")
@@ -685,53 +544,9 @@ namespace WebQLNhanSu.Migrations
 
                     b.HasKey("MaLichSu");
 
-                    b.HasIndex("MaTaiKhoan");
+                    b.HasIndex("MaNhanVien");
 
                     b.ToTable("LichSuNguoiDungs");
-
-                    b.HasData(
-                        new
-                        {
-                            MaLichSu = 1,
-                            HanhDong = "Đăng nhập",
-                            MaTaiKhoan = 3,
-                            ThoiGian = new DateTime(2024, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            MaLichSu = 2,
-                            HanhDong = "Đăng nhập",
-                            MaTaiKhoan = 3,
-                            ThoiGian = new DateTime(2024, 6, 7, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            MaLichSu = 3,
-                            HanhDong = "Đăng nhập",
-                            MaTaiKhoan = 3,
-                            ThoiGian = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            MaLichSu = 4,
-                            HanhDong = "Tạo hợp đồng cho Nguyễn Văn A",
-                            MaTaiKhoan = 1,
-                            ThoiGian = new DateTime(2024, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            MaLichSu = 5,
-                            HanhDong = "Duyệt nghỉ phép cho Trần Thị B",
-                            MaTaiKhoan = 2,
-                            ThoiGian = new DateTime(2024, 6, 7, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            MaLichSu = 6,
-                            HanhDong = "Cập nhật chấm công cho Lê Văn C",
-                            MaTaiKhoan = 2,
-                            ThoiGian = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
                 });
 
             modelBuilder.Entity("WebQLNhanSu.Models.LoaiHopDong", b =>
@@ -798,11 +613,10 @@ namespace WebQLNhanSu.Migrations
                     b.Property<int>("MaNhanVien")
                         .HasColumnType("int");
 
-                    b.Property<string>("TrangThai")
-                        .IsRequired()
+                    b.Property<int>("TrangThaiNghiPhep")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(max)")
-                        .HasDefaultValue("Chờ duyệt");
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.Property<DateTime>("TuNgay")
                         .HasColumnType("datetime2");
@@ -814,44 +628,6 @@ namespace WebQLNhanSu.Migrations
                     b.ToTable("NghiPheps", t =>
                         {
                             t.HasCheckConstraint("CK_NghiPhep_Ngay", "[DenNgay] >= [TuNgay]");
-                        });
-
-                    b.HasData(
-                        new
-                        {
-                            MaNghiPhep = 1,
-                            DenNgay = new DateTime(2024, 7, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LyDo = "Đi du lịch",
-                            MaNhanVien = 1,
-                            TrangThai = "Chờ duyệt",
-                            TuNgay = new DateTime(2024, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            MaNghiPhep = 2,
-                            DenNgay = new DateTime(2024, 7, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LyDo = "Thăm gia đình",
-                            MaNhanVien = 2,
-                            TrangThai = "Chờ duyệt",
-                            TuNgay = new DateTime(2024, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            MaNghiPhep = 3,
-                            DenNgay = new DateTime(2024, 7, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LyDo = "Đi công tác",
-                            MaNhanVien = 3,
-                            TrangThai = "Chờ duyệt",
-                            TuNgay = new DateTime(2024, 7, 15, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            MaNghiPhep = 4,
-                            DenNgay = new DateTime(2024, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LyDo = "Đi học",
-                            MaNhanVien = 4,
-                            TrangThai = "Chờ duyệt",
-                            TuNgay = new DateTime(2024, 7, 5, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -889,6 +665,9 @@ namespace WebQLNhanSu.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("MaNhanVien");
 
                     b.HasIndex("MaChucVu");
@@ -901,59 +680,11 @@ namespace WebQLNhanSu.Migrations
                         .IsUnique()
                         .HasFilter("[SoDienThoai] IS NOT NULL");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("NhanViens", t =>
                         {
                             t.HasCheckConstraint("CK_NV_GioiTinh", "[GioiTinh] IN (N'Nam', N'Nữ', N'Khác')");
-                        });
-
-                    b.HasData(
-                        new
-                        {
-                            MaNhanVien = 1,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            MaChucVu = 1,
-                            MaPhongBan = 1,
-                            MaTrinhDo = 2,
-                            NgaySinh = new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0123456789",
-                            TenNhanVien = "Nguyễn Văn A"
-                        },
-                        new
-                        {
-                            MaNhanVien = 2,
-                            DiaChi = "Hồ Chí Minh",
-                            GioiTinh = "Nữ",
-                            MaChucVu = 2,
-                            MaPhongBan = 2,
-                            MaTrinhDo = 3,
-                            NgaySinh = new DateTime(1992, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0987654321",
-                            TenNhanVien = "Trần Thị B"
-                        },
-                        new
-                        {
-                            MaNhanVien = 3,
-                            DiaChi = "Đà Nẵng",
-                            GioiTinh = "Nam",
-                            MaChucVu = 3,
-                            MaPhongBan = 3,
-                            MaTrinhDo = 4,
-                            NgaySinh = new DateTime(1985, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0112233445",
-                            TenNhanVien = "Lê Văn C"
-                        },
-                        new
-                        {
-                            MaNhanVien = 4,
-                            DiaChi = "Hải Phòng",
-                            GioiTinh = "Nữ",
-                            MaChucVu = 4,
-                            MaPhongBan = 4,
-                            MaTrinhDo = 1,
-                            NgaySinh = new DateTime(1995, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0223344556",
-                            TenNhanVien = "Phạm Thị D"
                         });
                 });
 
@@ -1006,73 +737,6 @@ namespace WebQLNhanSu.Migrations
                         {
                             MaPhongBan = 6,
                             TenPhongBan = "Phòng Hành Chính"
-                        });
-                });
-
-            modelBuilder.Entity("WebQLNhanSu.Models.TaiKhoan", b =>
-                {
-                    b.Property<int>("MaTaiKhoan")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaTaiKhoan"));
-
-                    b.Property<int?>("MaNhanVien")
-                        .HasColumnType("int");
-
-                    b.Property<string>("MatKhau")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TenDangNhap")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<bool>("TrangThai")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
-
-                    b.Property<string>("VaiTro")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("MaTaiKhoan");
-
-                    b.HasIndex("MaNhanVien");
-
-                    b.HasIndex("TenDangNhap")
-                        .IsUnique();
-
-                    b.ToTable("TaiKhoans", t =>
-                        {
-                            t.HasCheckConstraint("CK_TK_VaiTro", "[VaiTro] IN ('Admin','HR','Employee')");
-                        });
-
-                    b.HasData(
-                        new
-                        {
-                            MaTaiKhoan = 1,
-                            MatKhau = "admin123",
-                            TenDangNhap = "admin",
-                            TrangThai = true,
-                            VaiTro = "Admin"
-                        },
-                        new
-                        {
-                            MaTaiKhoan = 2,
-                            MatKhau = "hr123",
-                            TenDangNhap = "hr",
-                            TrangThai = true,
-                            VaiTro = "HR"
-                        },
-                        new
-                        {
-                            MaTaiKhoan = 3,
-                            MatKhau = "employee123",
-                            TenDangNhap = "employee",
-                            TrangThai = true,
-                            VaiTro = "Employee"
                         });
                 });
 
@@ -1225,13 +889,13 @@ namespace WebQLNhanSu.Migrations
 
             modelBuilder.Entity("WebQLNhanSu.Models.LichSuNguoiDung", b =>
                 {
-                    b.HasOne("WebQLNhanSu.Models.TaiKhoan", "TaiKhoan")
+                    b.HasOne("WebQLNhanSu.Models.NhanVien", "NhanVien")
                         .WithMany("LichSuNguoiDungs")
-                        .HasForeignKey("MaTaiKhoan")
+                        .HasForeignKey("MaNhanVien")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("TaiKhoan");
+                    b.Navigation("NhanVien");
                 });
 
             modelBuilder.Entity("WebQLNhanSu.Models.NghiPhep", b =>
@@ -1264,21 +928,17 @@ namespace WebQLNhanSu.Migrations
                         .HasForeignKey("MaTrinhDo")
                         .OnDelete(DeleteBehavior.SetNull);
 
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
                     b.Navigation("ChucVu");
 
                     b.Navigation("PhongBan");
 
                     b.Navigation("TrinhDo");
-                });
 
-            modelBuilder.Entity("WebQLNhanSu.Models.TaiKhoan", b =>
-                {
-                    b.HasOne("WebQLNhanSu.Models.NhanVien", "NhanVien")
-                        .WithMany("TaiKhoans")
-                        .HasForeignKey("MaNhanVien")
-                        .OnDelete(DeleteBehavior.SetNull);
-
-                    b.Navigation("NhanVien");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("WebQLNhanSu.Models.CaLamViec", b =>
@@ -1304,19 +964,14 @@ namespace WebQLNhanSu.Migrations
 
                     b.Navigation("HopDongs");
 
-                    b.Navigation("NghiPheps");
+                    b.Navigation("LichSuNguoiDungs");
 
-                    b.Navigation("TaiKhoans");
+                    b.Navigation("NghiPheps");
                 });
 
             modelBuilder.Entity("WebQLNhanSu.Models.PhongBan", b =>
                 {
                     b.Navigation("NhanViens");
-                });
-
-            modelBuilder.Entity("WebQLNhanSu.Models.TaiKhoan", b =>
-                {
-                    b.Navigation("LichSuNguoiDungs");
                 });
 
             modelBuilder.Entity("WebQLNhanSu.Models.TrinhDo", b =>

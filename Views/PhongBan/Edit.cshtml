@@ -1,0 +1,23 @@
+@model WebQLNhanSu.Models.PhongBan
+
+<h2>Sửa phòng ban</h2>
+
+<form asp-action="Edit">
+    <input type="hidden" asp-for="MaPhongBan" />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="TenPhongBan" class="form-label">Tên phòng ban</label>
+        <input asp-for="TenPhongBan" class="form-control" />
+        <span asp-validation-for="TenPhongBan" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Lưu</button>
+    <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

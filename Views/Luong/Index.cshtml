@@ -1,0 +1,52 @@
+@model IEnumerable<WebQLNhanSu.Models.BangLuong>
+
+@{
+    ViewData["Title"] = "Bảng lương của tôi";
+}
+
+<h2>Bảng lương của tôi</h2>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Tháng</th>
+            <th>Năm</th>
+            <th>Lương cơ bản</th>
+            <th>Thưởng</th>
+            <th>Khấu trừ</th>
+            <th>Tổng lương</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Thang</td>
+                    <td>@item.Nam</td>
+                    <td>@item.LuongCoBan.ToString("N0")</td>
+                    <td>@item.Thuong.ToString("N0")</td>
+                    <td>@item.KhauTru.ToString("N0")</td>
+                    <td>@item.TongLuong.ToString("N0")</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6" class="text-center">Chưa có dữ liệu bảng lương.</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,63 @@
+@model WebQLNhanSu.Models.ChamCong
+
+@{
+    ViewData["Title"] = "Sửa chấm công";
+}
+
+<h2>Sửa chấm công</h2>
+
+<form asp-action="Edit" method="post">
+    @Html.AntiForgeryToken()
+
+    <input type="hidden" asp-for="MaChamCong" />
+    <input type="hidden" asp-for="MaNhanVien" />
+    <input type="hidden" asp-for="NgayLam" />
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="MaCa" class="form-label">Ca làm việc</label>
+        <select asp-for="MaCa" class="form-select">
+            @if (ViewBag.CaLamViecs != null)
+            {
+                foreach (var ca in ViewBag.CaLamViecs)
+                {
+                    if (ca.MaCa == Model.MaCa)
+                    {
+                        <option value="@ca.MaCa" selected>@ca.TenCa</option>
+                    }
+                    else
+                    {
+                        <option value="@ca.MaCa">@ca.TenCa</option>
+                    }
+                }
+            }
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Ngày làm</label>
+        <input value="@Model.NgayLam.ToString("yyyy-MM-dd")" type="date" class="form-control" disabled />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="GioVao" class="form-label">Giờ vào</label>
+        <input asp-for="GioVao" type="time" class="form-control" />
+        <span asp-validation-for="GioVao" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="GioRa" class="form-label">Giờ ra</label>
+        <input asp-for="GioRa" type="time" class="form-control" />
+        <span asp-validation-for="GioRa" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Lưu</button>
+    <a asp-action="Manage" class="btn btn-secondary">Quay lại</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

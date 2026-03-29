@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace WebQLNhanSu.Migrations
 {
     /// <inheritdoc />
-    public partial class InitIdentity : Migration
+    public partial class InitClean : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -249,6 +249,7 @@ namespace WebQLNhanSu.Migrations
                 {
                     MaNhanVien = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     TenNhanVien = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     NgaySinh = table.Column<DateTime>(type: "datetime2", nullable: true),
                     GioiTinh = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -262,6 +263,11 @@ namespace WebQLNhanSu.Migrations
                 {
                     table.PrimaryKey("PK_NhanViens", x => x.MaNhanVien);
                     table.CheckConstraint("CK_NV_GioiTinh", "[GioiTinh] IN (N'Nam', N'Nữ', N'Khác')");
+                    table.ForeignKey(
+                        name: "FK_NhanViens_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_NhanViens_ChucVus_MaChucVu",
                         column: x => x.MaChucVu,
@@ -375,16 +381,38 @@ namespace WebQLNhanSu.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "LichSuNguoiDungs",
+                columns: table => new
+                {
+                    MaLichSu = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MaNhanVien = table.Column<int>(type: "int", nullable: false),
+                    ThoiGian = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
+                    HanhDong = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MoTa = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LichSuNguoiDungs", x => x.MaLichSu);
+                    table.ForeignKey(
+                        name: "FK_LichSuNguoiDungs_NhanViens_MaNhanVien",
+                        column: x => x.MaNhanVien,
+                        principalTable: "NhanViens",
+                        principalColumn: "MaNhanVien",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "NghiPheps",
                 columns: table => new
                 {
                     MaNghiPhep = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    TrangThaiNghiPhep = table.Column<int>(type: "int", nullable: false, defaultValue: 0),
                     MaNhanVien = table.Column<int>(type: "int", nullable: false),
                     TuNgay = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DenNgay = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LyDo = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TrangThai = table.Column<string>(type: "nvarchar(max)", nullable: false, defaultValue: "Chờ duyệt")
+                    LyDo = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -398,52 +426,6 @@ namespace WebQLNhanSu.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "TaiKhoans",
-                columns: table => new
-                {
-                    MaTaiKhoan = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TenDangNhap = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    MatKhau = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    VaiTro = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TrangThai = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
-                    MaNhanVien = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TaiKhoans", x => x.MaTaiKhoan);
-                    table.CheckConstraint("CK_TK_VaiTro", "[VaiTro] IN ('Admin','HR','Employee')");
-                    table.ForeignKey(
-                        name: "FK_TaiKhoans_NhanViens_MaNhanVien",
-                        column: x => x.MaNhanVien,
-                        principalTable: "NhanViens",
-                        principalColumn: "MaNhanVien",
-                        onDelete: ReferentialAction.SetNull);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "LichSuNguoiDungs",
-                columns: table => new
-                {
-                    MaLichSu = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    MaTaiKhoan = table.Column<int>(type: "int", nullable: false),
-                    ThoiGian = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
-                    HanhDong = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MoTa = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_LichSuNguoiDungs", x => x.MaLichSu);
-                    table.ForeignKey(
-                        name: "FK_LichSuNguoiDungs_TaiKhoans_MaTaiKhoan",
-                        column: x => x.MaTaiKhoan,
-                        principalTable: "TaiKhoans",
-                        principalColumn: "MaTaiKhoan",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.InsertData(
                 table: "CaLamViecs",
                 columns: new[] { "MaCa", "GioBatDau", "GioKetThuc", "TenCa" },
@@ -452,8 +434,7 @@ namespace WebQLNhanSu.Migrations
                     { 1, new TimeSpan(0, 8, 0, 0, 0), new TimeSpan(0, 16, 0, 0, 0), "Ca Sáng" },
                     { 2, new TimeSpan(0, 16, 0, 0, 0), new TimeSpan(0, 21, 0, 0, 0), "Ca Chiều" },
                     { 3, new TimeSpan(0, 0, 0, 0, 0), new TimeSpan(0, 8, 0, 0, 0), "Ca Đêm" },
-                    { 4, new TimeSpan(0, 8, 0, 0, 0), new TimeSpan(0, 17, 0, 0, 0), "Ca Hành Chính" },
-                    { 5, new TimeSpan(0, 7, 0, 0, 0), new TimeSpan(0, 19, 0, 0, 0), "Ca Linh Hoạt" }
+                    { 4, new TimeSpan(0, 8, 0, 0, 0), new TimeSpan(0, 17, 0, 0, 0), "Ca Hành Chính" }
                 });
 
             migrationBuilder.InsertData(
@@ -505,16 +486,6 @@ namespace WebQLNhanSu.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "TaiKhoans",
-                columns: new[] { "MaTaiKhoan", "MaNhanVien", "MatKhau", "TenDangNhap", "TrangThai", "VaiTro" },
-                values: new object[,]
-                {
-                    { 1, null, "admin123", "admin", true, "Admin" },
-                    { 2, null, "hr123", "hr", true, "HR" },
-                    { 3, null, "employee123", "employee", true, "Employee" }
-                });
-
-            migrationBuilder.InsertData(
                 table: "TrinhDos",
                 columns: new[] { "MaTrinhDo", "TenTrinhDo" },
                 values: new object[,]
@@ -524,75 +495,6 @@ namespace WebQLNhanSu.Migrations
                     { 3, "Thạc Sĩ" },
                     { 4, "Tiến Sĩ" },
                     { 5, "Không Có" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "LichSuNguoiDungs",
-                columns: new[] { "MaLichSu", "HanhDong", "MaTaiKhoan", "MoTa", "ThoiGian" },
-                values: new object[,]
-                {
-                    { 1, "Đăng nhập", 3, null, new DateTime(2024, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 2, "Đăng nhập", 3, null, new DateTime(2024, 6, 7, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 3, "Đăng nhập", 3, null, new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 4, "Tạo hợp đồng cho Nguyễn Văn A", 1, null, new DateTime(2024, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 5, "Duyệt nghỉ phép cho Trần Thị B", 2, null, new DateTime(2024, 6, 7, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 6, "Cập nhật chấm công cho Lê Văn C", 2, null, new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified) }
-                });
-
-            migrationBuilder.InsertData(
-                table: "NhanViens",
-                columns: new[] { "MaNhanVien", "DiaChi", "GioiTinh", "MaChucVu", "MaPhongBan", "MaTrinhDo", "NgaySinh", "SoDienThoai", "TenNhanVien" },
-                values: new object[,]
-                {
-                    { 1, "Hà Nội", "Nam", 1, 1, 2, new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "0123456789", "Nguyễn Văn A" },
-                    { 2, "Hồ Chí Minh", "Nữ", 2, 2, 3, new DateTime(1992, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "0987654321", "Trần Thị B" },
-                    { 3, "Đà Nẵng", "Nam", 3, 3, 4, new DateTime(1985, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "0112233445", "Lê Văn C" },
-                    { 4, "Hải Phòng", "Nữ", 4, 4, 1, new DateTime(1995, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "0223344556", "Phạm Thị D" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "BangLuongs",
-                columns: new[] { "MaBangLuong", "KhauTru", "LuongCoBan", "MaNhanVien", "Nam", "Thang", "Thuong" },
-                values: new object[,]
-                {
-                    { 1, 500000m, 5000000m, 1, 2024, 6, 1000000m },
-                    { 2, 800000m, 8000000m, 2, 2024, 6, 1500000m },
-                    { 3, 2000000m, 15000000m, 3, 2024, 6, 3000000m },
-                    { 4, 200000m, 3000000m, 4, 2024, 6, 500000m },
-                    { 5, 600000m, 5000000m, 1, 2024, 7, 1200000m }
-                });
-
-            migrationBuilder.InsertData(
-                table: "ChamCongs",
-                columns: new[] { "MaChamCong", "GioRa", "GioTangCa", "GioVao", "MaCa", "MaNhanVien", "NgayLam", "SoGioLam" },
-                values: new object[,]
-                {
-                    { 1, null, 2.0, null, 1, 1, new DateTime(2024, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 8.0 },
-                    { 2, null, 0.0, null, 2, 2, new DateTime(2024, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 8.0 },
-                    { 3, null, 1.0, null, 3, 3, new DateTime(2024, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 8.0 },
-                    { 4, null, 0.0, null, 4, 4, new DateTime(2024, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 8.0 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "HopDongs",
-                columns: new[] { "MaHopDong", "Luong", "MaLoaiHopDong", "MaNhanVien", "NgayBatDau", "NgayKetThuc", "TrangThai" },
-                values: new object[,]
-                {
-                    { 1, 0m, 2, 1, new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Đang hiệu lực" },
-                    { 2, 0m, 2, 2, new DateTime(2021, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Đang hiệu lực" },
-                    { 3, 0m, 2, 3, new DateTime(2019, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Đang hiệu lực" },
-                    { 4, 0m, 1, 4, new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "Đang hiệu lực" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "NghiPheps",
-                columns: new[] { "MaNghiPhep", "DenNgay", "LyDo", "MaNhanVien", "TrangThai", "TuNgay" },
-                values: new object[,]
-                {
-                    { 1, new DateTime(2024, 7, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Đi du lịch", 1, "Chờ duyệt", new DateTime(2024, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 2, new DateTime(2024, 7, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "Thăm gia đình", 2, "Chờ duyệt", new DateTime(2024, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 3, new DateTime(2024, 7, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Đi công tác", 3, "Chờ duyệt", new DateTime(2024, 7, 15, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 4, new DateTime(2024, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), "Đi học", 4, "Chờ duyệt", new DateTime(2024, 7, 5, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.CreateIndex(
@@ -667,9 +569,9 @@ namespace WebQLNhanSu.Migrations
                 column: "MaNhanVien");
 
             migrationBuilder.CreateIndex(
-                name: "IX_LichSuNguoiDungs_MaTaiKhoan",
+                name: "IX_LichSuNguoiDungs_MaNhanVien",
                 table: "LichSuNguoiDungs",
-                column: "MaTaiKhoan");
+                column: "MaNhanVien");
 
             migrationBuilder.CreateIndex(
                 name: "IX_LoaiHopDongs_TenLoaiHopDong",
@@ -705,20 +607,14 @@ namespace WebQLNhanSu.Migrations
                 filter: "[SoDienThoai] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_NhanViens_UserId",
+                table: "NhanViens",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PhongBans_TenPhongBan",
                 table: "PhongBans",
                 column: "TenPhongBan",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TaiKhoans_MaNhanVien",
-                table: "TaiKhoans",
-                column: "MaNhanVien");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TaiKhoans_TenDangNhap",
-                table: "TaiKhoans",
-                column: "TenDangNhap",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -768,19 +664,16 @@ namespace WebQLNhanSu.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
                 name: "CaLamViecs");
 
             migrationBuilder.DropTable(
                 name: "LoaiHopDongs");
 
             migrationBuilder.DropTable(
-                name: "TaiKhoans");
+                name: "NhanViens");
 
             migrationBuilder.DropTable(
-                name: "NhanViens");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "ChucVus");

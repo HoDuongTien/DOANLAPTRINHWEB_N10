@@ -1,0 +1,38 @@
+@model WebQLNhanSu.Models.PhongBan
+
+@{
+    ViewData["Title"] = "Xóa phòng ban";
+}
+
+<div class="crud-page">
+    <div class="card card-modern delete-card p-4 p-md-5">
+        <div class="mb-4">
+            <h2 class="section-title mb-1 text-danger">Xóa phòng ban</h2>
+            <p class="section-subtitle mb-0">Xác nhận trước khi xóa dữ liệu</p>
+        </div>
+
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+        <div class="warning-box mb-4">
+            Bạn có chắc muốn xóa phòng ban này không?
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6">
+                <label class="form-label">Mã phòng ban</label>
+                <div class="detail-box">@Model.MaPhongBan</div>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Tên phòng ban</label>
+                <div class="detail-box">@Model.TenPhongBan</div>
+            </div>
+        </div>
+
+        <form asp-action="Delete" method="post" class="page-actions">
+            <input type="hidden" asp-for="MaPhongBan" />
+            <button type="submit" class="btn btn-danger">Xóa</button>
+            <a asp-action="Index" class="btn btn-outline-secondary">Quay lại</a>
+        </form>
+    </div>
+</div>

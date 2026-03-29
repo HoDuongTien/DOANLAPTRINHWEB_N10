@@ -1,0 +1,60 @@
+@model IEnumerable<WebQLNhanSu.Models.ChamCong>
+
+@{
+    ViewData["Title"] = "Quản lý chấm công";
+}
+
+<h2>Quản lý chấm công</h2>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Mã</th>
+            <th>Nhân viên</th>
+            <th>Ngày làm</th>
+            <th>Ca</th>
+            <th>Giờ vào</th>
+            <th>Giờ ra</th>
+            <th>Số giờ làm</th>
+            <th>Giờ tăng ca</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.MaChamCong</td>
+                    <td>@item.NhanVien?.TenNhanVien</td>
+                    <td>@item.NgayLam.ToString("dd/MM/yyyy")</td>
+                    <td>@item.CaLamViec?.TenCa</td>
+                    <td>@(item.GioVao.HasValue ? item.GioVao.Value.ToString(@"hh\:mm") : "")</td>
+                    <td>@(item.GioRa.HasValue ? item.GioRa.Value.ToString(@"hh\:mm") : "")</td>
+                    <td>@item.SoGioLam</td>
+                    <td>@item.GioTangCa</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.MaChamCong" class="btn btn-sm btn-primary">Sửa</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="9" class="text-center">Chưa có dữ liệu chấm công.</td>
+            </tr>
+        }
+    </tbody>
+</table>

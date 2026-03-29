@@ -1,0 +1,31 @@
+@model IEnumerable<WebQLNhanSu.Models.LoaiHopDong>
+
+<h2>Danh sách loại hợp đồng</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Thêm mới</a>
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Mã loại hợp đồng</th>
+            <th>Tên loại hợp đồng</th>
+            <th width="220">Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.MaLoaiHopDong</td>
+            <td>@item.TenLoaiHopDong</td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.MaLoaiHopDong" class="btn btn-info btn-sm">Chi tiết</a>
+                <a asp-action="Edit" asp-route-id="@item.MaLoaiHopDong" class="btn btn-warning btn-sm">Sửa</a>
+                <a asp-action="Delete" asp-route-id="@item.MaLoaiHopDong" class="btn btn-danger btn-sm">Xóa</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

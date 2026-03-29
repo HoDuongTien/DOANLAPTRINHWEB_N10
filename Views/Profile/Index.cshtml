@@ -1,0 +1,64 @@
+@model WebQLNhanSu.Models.NhanVien
+
+@{
+    ViewData["Title"] = "Hồ sơ cá nhân";
+}
+
+<div class="profile-card">
+    <div class="card card-modern p-4 p-md-5">
+        <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between mb-4">
+            <div>
+                <h2 class="section-title mb-1">Hồ sơ cá nhân</h2>
+                <p class="section-subtitle mb-0">Thông tin cá nhân của nhân viên</p>
+            </div>
+            <span class="badge-soft mt-3 mt-md-0">Nhân sự</span>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6">
+                <label class="form-label">Tên nhân viên</label>
+                <div class="profile-view-box">@Model.TenNhanVien</div>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Giới tính</label>
+                <div class="profile-view-box">@Model.GioiTinh</div>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Ngày sinh</label>
+                <div class="profile-view-box">@(Model.NgaySinh?.ToString("dd/MM/yyyy"))</div>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Số điện thoại</label>
+                <div class="profile-view-box">@Model.SoDienThoai</div>
+            </div>
+
+            <div class="col-12">
+                <label class="form-label">Địa chỉ</label>
+                <div class="profile-view-box">@Model.DiaChi</div>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Phòng ban</label>
+                <div class="profile-view-box">@Model.PhongBan?.TenPhongBan</div>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Chức vụ</label>
+                <div class="profile-view-box">@Model.ChucVu?.TenChucVu</div>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Trình độ</label>
+                <div class="profile-view-box">@Model.TrinhDo?.TenTrinhDo</div>
+            </div>
+        </div>
+
+        <div class="d-flex flex-wrap gap-2 mt-4">
+            <a asp-action="Edit" class="btn btn-primary">Sửa hồ sơ</a>
+            <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">Quay lại</a>
+        </div>
+    </div>
+</div>

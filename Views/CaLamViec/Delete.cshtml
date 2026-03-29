@@ -1,0 +1,48 @@
+@model WebQLNhanSu.Models.CaLamViec
+
+@{
+    ViewData["Title"] = "Xóa ca làm việc";
+}
+
+<div class="crud-page">
+    <div class="card card-modern delete-card p-4 p-md-5">
+        <div class="mb-4">
+            <h2 class="section-title mb-1 text-danger">Xóa ca làm việc</h2>
+            <p class="section-subtitle mb-0">Xác nhận trước khi xóa dữ liệu</p>
+        </div>
+
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+        <div class="warning-box mb-4">
+            Bạn có chắc muốn xóa ca làm việc này không?
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-3">
+                <label class="form-label">Mã ca</label>
+                <div class="detail-box">@Model.MaCa</div>
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label">Tên ca</label>
+                <div class="detail-box">@Model.TenCa</div>
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label">Giờ bắt đầu</label>
+                <div class="detail-box">@Model.GioBatDau.ToString(@"hh\:mm")</div>
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label">Giờ kết thúc</label>
+                <div class="detail-box">@Model.GioKetThuc.ToString(@"hh\:mm")</div>
+            </div>
+        </div>
+
+        <form asp-action="Delete" method="post" class="page-actions">
+            <input type="hidden" asp-for="MaCa" />
+            <button type="submit" class="btn btn-danger">Xóa</button>
+            <a asp-action="Index" class="btn btn-outline-secondary">Quay lại</a>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+@model WebQLNhanSu.Models.LoaiHopDong
+
+@{
+    ViewData["Title"] = "Chi tiết loại hợp đồng";
+}
+
+<div class="crud-page">
+    <div class="card card-modern p-4 p-md-5">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4">
+            <div>
+                <h2 class="section-title mb-1">Chi tiết loại hợp đồng</h2>
+                <p class="section-subtitle mb-0">Xem thông tin chi tiết của loại hợp đồng</p>
+            </div>
+            <span class="badge-soft mt-3 mt-md-0">Danh mục</span>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6">
+                <label class="form-label">Mã loại hợp đồng</label>
+                <div class="detail-box">@Model.MaLoaiHopDong</div>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Tên loại hợp đồng</label>
+                <div class="detail-box">@Model.TenLoaiHopDong</div>
+            </div>
+        </div>
+
+        <div class="page-actions">
+            <a asp-action="Edit" asp-route-id="@Model.MaLoaiHopDong" class="btn btn-warning">Sửa</a>
+            <a asp-action="Index" class="btn btn-outline-secondary">Quay lại</a>
+        </div>
+    </div>
+</div>
