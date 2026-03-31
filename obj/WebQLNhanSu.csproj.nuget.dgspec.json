@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\DA_LTWEB_N10\\WebQLNhanSu\\WebQLNhanSu.csproj": {}
+    "D:\\DOANLAPTRINHWEB_N10\\WebQLNhanSu.csproj": {}
   },
   "projects": {
-    "E:\\DA_LTWEB_N10\\WebQLNhanSu\\WebQLNhanSu.csproj": {
+    "D:\\DOANLAPTRINHWEB_N10\\WebQLNhanSu.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\DA_LTWEB_N10\\WebQLNhanSu\\WebQLNhanSu.csproj",
+        "projectUniqueName": "D:\\DOANLAPTRINHWEB_N10\\WebQLNhanSu.csproj",
         "projectName": "WebQLNhanSu",
-        "projectPath": "E:\\DA_LTWEB_N10\\WebQLNhanSu\\WebQLNhanSu.csproj",
-        "packagesPath": "C:\\Users\\LAPTOP ASUS\\.nuget\\packages\\",
-        "outputPath": "E:\\DA_LTWEB_N10\\WebQLNhanSu\\obj\\",
+        "projectPath": "D:\\DOANLAPTRINHWEB_N10\\WebQLNhanSu.csproj",
+        "packagesPath": "C:\\Users\\dell\\.nuget\\packages\\",
+        "outputPath": "D:\\DOANLAPTRINHWEB_N10\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\LAPTOP ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

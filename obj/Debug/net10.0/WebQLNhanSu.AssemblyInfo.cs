@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebQLNhanSu")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dc3615aec330dd18538a2cd8fba3dd943fe1b9e9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d1bffe52ba616e3a966cf6b2b8d6e37e996b98fb")]
 [assembly: System.Reflection.AssemblyProductAttribute("WebQLNhanSu")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WebQLNhanSu")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

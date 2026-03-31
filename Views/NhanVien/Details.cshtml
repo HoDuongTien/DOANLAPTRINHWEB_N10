@@ -4,51 +4,66 @@
     ViewData["Title"] = "Chi tiết nhân viên";
 }
 
-<h2 class="mb-3">Chi tiết nhân viên</h2>
-
-<div class="card">
-    <div class="card-body">
-
-        <dl class="row">
-            <dt class="col-sm-4">Mã nhân viên</dt>
-            <dd class="col-sm-8">@Model.MaNhanVien</dd>
-
-            <dt class="col-sm-4">Tên nhân viên</dt>
-            <dd class="col-sm-8">@Model.TenNhanVien</dd>
-
-            <dt class="col-sm-4">Ngày sinh</dt>
-            <dd class="col-sm-8">@Model.NgaySinh?.ToString("dd/MM/yyyy")</dd>
-
-            <dt class="col-sm-4">Giới tính</dt>
-            <dd class="col-sm-8">@Model.GioiTinh</dd>
-
-            <dt class="col-sm-4">Số điện thoại</dt>
-            <dd class="col-sm-8">@Model.SoDienThoai</dd>
-
-            <dt class="col-sm-4">Địa chỉ</dt>
-            <dd class="col-sm-8">@Model.DiaChi</dd>
-
-            <dt class="col-sm-4">Phòng ban</dt>
-            <dd class="col-sm-8">@Model.PhongBan?.TenPhongBan</dd>
-
-            <dt class="col-sm-4">Chức vụ</dt>
-            <dd class="col-sm-8">@Model.ChucVu?.TenChucVu</dd>
-
-            <dt class="col-sm-4">Trình độ</dt>
-            <dd class="col-sm-8">@Model.TrinhDo?.TenTrinhDo</dd>
-        </dl>
-
+<div class="container py-4">
+    <div class="card shadow border-0 overflow-hidden">
+        <div class="card-header bg-primary text-white py-3">
+            <h4 class="mb-0"><i class="fa fa-info-circle me-2"></i>Hồ sơ nhân viên: @Model.TenNhanVien</h4>
+        </div>
+        <div class="card-body p-4">
+            <div class="row g-4">
+                <div class="col-md-3 text-center border-end">
+                    <div class="mb-3">
+                        <img src="https://ui-avatars.com/api/?name=@Model.TenNhanVien&size=150&background=random"
+                             class="rounded-circle shadow-sm" alt="Avatar" />
+                    </div>
+                    <h5 class="fw-bold">@Model.TenNhanVien</h5>
+                    <span class="badge bg-info text-dark">@Model.ChucVu?.TenChucVu</span>
+                </div>
+                <div class="col-md-9 px-md-4">
+                    <div class="row">
+                        <div class="col-sm-6 mb-3">
+                            <label class="text-muted small d-block">Mã nhân viên</label>
+                            <span class="fw-bold">#@Model.MaNhanVien</span>
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                            <label class="text-muted small d-block">Giới tính</label>
+                            <span class="fw-bold">@Model.GioiTinh</span>
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                            <label class="text-muted small d-block">Ngày sinh</label>
+                            <span class="fw-bold text-primary"><i
+                                class="fa fa-calendar-alt me-1"></i>@Model.NgaySinh?.ToString("dd/MM/yyyy")</span>
+                            </div>
+                            <div class="col-sm-6 mb-3">
+                                <label class="text-muted small d-block">Số điện thoại</label>
+                                <span class="fw-bold"><i class="fa fa-phone me-1"></i>@Model.SoDienThoai</span>
+                            </div>
+                            <div class="col-sm-6 mb-3">
+                                <label class="text-muted small d-block">Phòng ban</label>
+                                <span class="badge bg-light text-primary border p-2">@Model.PhongBan?.TenPhongBan</span>
+                            </div>
+                            <div class="col-sm-6 mb-3">
+                                <label class="text-muted small d-block">Trình độ</label>
+                                <span class="fw-bold">@Model.TrinhDo?.TenTrinhDo</span>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label class="text-muted small d-block">Địa chỉ</label>
+                                <span class="fw-bold">@Model.DiaChi</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light py-3 px-4 text-end">
+                <a asp-action="Edit" asp-route-id="@Model.MaNhanVien" class="btn btn-warning px-4 me-2">
+                    <i class="fa fa-edit me-1"></i> Chỉnh sửa
+                </a>
+                <a asp-action="Delete" asp-route-id="@Model.MaNhanVien" class="btn btn-outline-danger px-4 me-2">
+                    <i class="fa fa-trash me-1"></i> Xóa
+                </a>
+                <a asp-action="Index" class="btn btn-secondary px-4">
+                    <i class="fa fa-arrow-left me-1"></i> Danh sách
+                </a>
+            </div>
+        </div>
     </div>
-</div>
-
-<div class="mt-3">
-    <a asp-action="Edit" asp-route-id="@Model.MaNhanVien" class="btn btn-primary">
-        <i class="fa fa-edit"></i> Sửa
-    </a>
-    <a asp-action="Delete" asp-route-id="@Model.MaNhanVien" class="btn btn-danger">
-        <i class="fa fa-trash"></i> Xóa
-    </a>
-    <a asp-action="Index" class="btn btn-secondary">
-        <i class="fa fa-arrow-left"></i> Quay lại
-    </a>
-</div>
