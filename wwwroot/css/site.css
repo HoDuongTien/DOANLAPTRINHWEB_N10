@@ -85,10 +85,15 @@ a:hover {
 
 .navbar .nav-link {
     color: rgba(255, 255, 255, 0.95) !important;
-    padding: 0.58rem 0.92rem !important;
+    padding: 0.54rem 0.74rem !important;
     border-radius: 11px;
     transition: all 0.2s ease;
     font-weight: 600;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    line-height: 1.1;
 }
 
 .navbar .nav-link:hover,
@@ -112,6 +117,30 @@ a:hover {
 .dropdown-menu .dropdown-item:hover {
     background: #eef4ff;
     color: #244a87;
+}
+
+.app-navbar .navbar-collapse {
+    gap: 0.75rem;
+}
+
+.app-navbar .navbar-collapse > .navbar-nav {
+    flex-wrap: nowrap;
+    gap: 0.15rem;
+}
+
+.app-navbar .navbar-collapse > .d-flex {
+    flex-shrink: 0;
+}
+
+.app-navbar .nav-item {
+    display: flex;
+    align-items: center;
+}
+
+.app-navbar .d-flex .navbar-nav {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.25rem;
 }
 
 #logoutForm,
@@ -520,19 +549,40 @@ textarea.form-control {
     margin-bottom: 0.4rem;
 }
 
+.table-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.45rem;
+    flex-wrap: nowrap;
+}
+
+.table-actions .btn {
+    min-width: 72px;
+    margin: 0;
+}
+
 @media (max-width: 991.98px) {
     .app-navbar .navbar-nav {
         gap: 0.2rem;
         margin-top: 0.8rem;
         margin-bottom: 0.7rem !important;
+        flex-wrap: wrap;
     }
 
     .app-navbar .nav-link {
         border-radius: 10px;
+        white-space: normal;
     }
 
     .home-hero {
         padding: 1.35rem;
+    }
+
+    .app-navbar .d-flex .navbar-nav {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.2rem;
     }
 }
 
@@ -547,3 +597,4 @@ textarea.form-control {
         font-size: 1.35rem;
     }
 }
+

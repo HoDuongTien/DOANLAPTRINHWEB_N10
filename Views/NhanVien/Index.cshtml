@@ -6,39 +6,43 @@
     <a asp-action="Create" class="btn btn-success">+ Thêm nhân viên</a>
 </p>
 
-<table class="table table-bordered table-striped table-hover">
-    <thead class="table-dark">
-        <tr>
-            <th>Mã</th>
-            <th>Tên</th>
-            <th>Ngày sinh</th>
-            <th>Điện thoại</th>
-            <th>Địa chỉ</th>
-            <th>Phòng ban</th>
-            <th>Chức vụ</th>
-            <th class="text-center" width="200px">Thao tác</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+<div class="table-responsive">
+    <table class="table table-bordered table-striped table-hover align-middle">
+        <thead class="table-dark">
             <tr>
-                <td>@item.MaNhanVien</td>
-                <td>@item.TenNhanVien</td>
-                <td>@item.NgaySinh?.ToString("dd/MM/yyyy")</td>
-                <td>@item.SoDienThoai</td>
-                <td>@item.DiaChi</td>
-                <td>@item.PhongBan?.TenPhongBan</td>
-                <td>@item.ChucVu?.TenChucVu</td>
-                <td class="text-center">
-                    <a asp-action="Details" asp-route-id="@item.MaNhanVien" class="btn btn-info btn-sm">Chi tiết</a>
-                    <a asp-action="Edit" asp-route-id="@item.MaNhanVien" class="btn btn-warning btn-sm">Sửa</a>
-                    <a asp-action="Delete" asp-route-id="@item.MaNhanVien" class="btn btn-danger btn-sm">Xóa</a>
-                </td>
+                <th>Mã</th>
+                <th>Tên</th>
+                <th>Ngày sinh</th>
+                <th>Điện thoại</th>
+                <th>Địa chỉ</th>
+                <th>Phòng ban</th>
+                <th>Chức vụ</th>
+                <th class="text-center" style="min-width:260px;">Thao tác</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.MaNhanVien</td>
+                    <td>@item.TenNhanVien</td>
+                    <td>@item.NgaySinh?.ToString("dd/MM/yyyy")</td>
+                    <td>@item.SoDienThoai</td>
+                    <td>@item.DiaChi</td>
+                    <td>@item.PhongBan?.TenPhongBan</td>
+                    <td>@item.ChucVu?.TenChucVu</td>
+                    <td class="text-center">
+                        <div class="table-actions">
+                            <a asp-action="Details" asp-route-id="@item.MaNhanVien" class="btn btn-info btn-sm">Chi tiết</a>
+                            <a asp-action="Edit" asp-route-id="@item.MaNhanVien" class="btn btn-warning btn-sm">Sửa</a>
+                            <a asp-action="Delete" asp-route-id="@item.MaNhanVien" class="btn btn-danger btn-sm">Xóa</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
 <div class="mt-3">
     <a asp-action="Index" class="btn btn-secondary">Quay lại</a>

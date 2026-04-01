@@ -865,4 +865,4 @@ D:\DOANLAPTRINHWEB_N10\obj\Debug\net10.0\refint\WebQLNhanSu.dll
 D:\DOANLAPTRINHWEB_N10\obj\Debug\net10.0\WebQLNhanSu.pdb
 D:\DOANLAPTRINHWEB_N10\obj\Debug\net10.0\WebQLNhanSu.genruntimeconfig.cache
 D:\DOANLAPTRINHWEB_N10\obj\Debug\net10.0\ref\WebQLNhanSu.dll
-D:\DOANLAPTRINHWEB_N10\obj\Debug\net10.0\compressed\7wxznz4pyd-{0}-aa3mywbcvz-aa3mywbcvz.gz
+D:\DOANLAPTRINHWEB_N10\obj\Debug\net10.0\compressed\7wxznz4pyd-{0}-14hrixov27-14hrixov27.gz
