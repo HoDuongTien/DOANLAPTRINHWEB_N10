@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using WebQLNhanSu.Data;
 using WebQLNhanSu.Enums;
 using WebQLNhanSu.Models;
+using WebQLNhanSu.Services;
 
 namespace WebQLNhanSu.Controllers
 {
@@ -12,10 +14,17 @@ namespace WebQLNhanSu.Controllers
     public class NghiPhepController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IEmailSender _emailSender;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public NghiPhepController(ApplicationDbContext context)
+        public NghiPhepController(
+            ApplicationDbContext context,
+            IEmailSender emailSender,
+            UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _emailSender = emailSender;
+            _userManager = userManager;
         }
 
         public async Task<IActionResult> Index()
@@ -27,7 +36,7 @@ namespace WebQLNhanSu.Controllers
 
             if (nhanVien == null)
             {
-                TempData["Error"] = "Bạn chưa có hồ sơ nhân viên.";
+                TempData["Error"] = "Ban chua co ho so nhan vien.";
                 return RedirectToAction("Index", "Home");
             }
 
@@ -48,7 +57,7 @@ namespace WebQLNhanSu.Controllers
 
             if (nhanVien == null)
             {
-                TempData["Error"] = "Bạn chưa có hồ sơ nhân viên.";
+                TempData["Error"] = "Ban chua co ho so nhan vien.";
                 return RedirectToAction("Index");
             }
 
@@ -68,7 +77,7 @@ namespace WebQLNhanSu.Controllers
         {
             if (model.DenNgay < model.TuNgay)
             {
-                ModelState.AddModelError("", "Đến ngày phải lớn hơn hoặc bằng từ ngày.");
+                ModelState.AddModelError("", "Den ngay phai lon hon hoac bang tu ngay.");
             }
 
             if (!ModelState.IsValid)
@@ -81,7 +90,7 @@ namespace WebQLNhanSu.Controllers
             _context.NghiPheps.Add(model);
             await _context.SaveChangesAsync();
 
-            TempData["Success"] = "Gửi đơn nghỉ phép thành công.";
+            TempData["Success"] = "Gui don nghi phep thanh cong.";
             return RedirectToAction("Index");
         }
 
@@ -108,27 +117,72 @@ namespace WebQLNhanSu.Controllers
         [Authorize(Roles = "Admin,HR")]
         public async Task<IActionResult> Duyet(int id)
         {
-            var nghiPhep = await _context.NghiPheps.FindAsync(id);
-            if (nghiPhep == null) return NotFound();
+            var nghiPhep = await _context.NghiPheps
+                .Include(x => x.NhanVien)
+                .FirstOrDefaultAsync(x => x.MaNghiPhep == id);
+
+            if (nghiPhep == null)
+            {
+                return NotFound();
+            }
 
             nghiPhep.TrangThaiNghiPhep = TrangThaiNghiPhep.DaDuyet;
             await _context.SaveChangesAsync();
 
-            TempData["Success"] = "Đã duyệt đơn nghỉ phép.";
+            await SendLeaveStatusEmailAsync(nghiPhep, "Don nghi phep da duoc duyet");
+
+            TempData["Success"] = "Da duyet don nghi phep.";
             return RedirectToAction("Manage");
         }
 
         [Authorize(Roles = "Admin,HR")]
         public async Task<IActionResult> TuChoi(int id)
         {
-            var nghiPhep = await _context.NghiPheps.FindAsync(id);
-            if (nghiPhep == null) return NotFound();
+            var nghiPhep = await _context.NghiPheps
+                .Include(x => x.NhanVien)
+                .FirstOrDefaultAsync(x => x.MaNghiPhep == id);
+
+            if (nghiPhep == null)
+            {
+                return NotFound();
+            }
 
             nghiPhep.TrangThaiNghiPhep = TrangThaiNghiPhep.TuChoi;
             await _context.SaveChangesAsync();
 
-            TempData["Success"] = "Đã từ chối đơn nghỉ phép.";
+            await SendLeaveStatusEmailAsync(nghiPhep, "Don nghi phep cua ban da bi tu choi");
+
+            TempData["Success"] = "Da tu choi don nghi phep.";
             return RedirectToAction("Manage");
+        }
+
+        private async Task SendLeaveStatusEmailAsync(NghiPhep nghiPhep, string subject)
+        {
+            if (nghiPhep.NhanVien == null || string.IsNullOrEmpty(nghiPhep.NhanVien.UserId))
+            {
+                return;
+            }
+
+            var user = await _userManager.FindByIdAsync(nghiPhep.NhanVien.UserId);
+            if (user == null || string.IsNullOrEmpty(user.Email))
+            {
+                return;
+            }
+
+            var body = $@"
+                <h3>Thong bao tu he thong quan ly nhan su</h3>
+                <p>Xin chao <b>{nghiPhep.NhanVien.TenNhanVien}</b>,</p>
+                <p>{subject}.</p>
+                <p>Thoi gian nghi: {nghiPhep.TuNgay:dd/MM/yyyy} - {nghiPhep.DenNgay:dd/MM/yyyy}</p>
+                <p>Vui long dang nhap he thong de xem chi tiet.</p>";
+
+            try
+            {
+                await _emailSender.SendEmailAsync(user.Email, subject, body);
+            }
+            catch
+            {
+            }
         }
     }
 }
