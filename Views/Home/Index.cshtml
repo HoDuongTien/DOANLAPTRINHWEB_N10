@@ -1,116 +1,437 @@
 ﻿﻿@{
-ViewData["Title"] = "Trang chủ";
+    ViewData["Title"] = "Trang chủ";
 }
 
+<div class="hr-homepage">
 
-<div class="home-hero p-4 p-md-5 mb-4">
-    <div class="row align-items-center g-4">
-        <div class="col-lg-8">
-            <span class="badge bg-light text-primary fw-semibold mb-3 px-3 py-2 rounded-pill">
-                Hệ thống quản lý nhân sự HRM
-            </span>
-
-            <h1 class="fw-bold mb-3" style="font-size: 2.3rem;">
-                Website Quản lý Nhân sự
-            </h1>
-
-            <p class="hero-text mb-4">
-                Hệ thống hỗ trợ quản lý hồ sơ nhân viên, chấm công, nghỉ phép, bảng lương,
-                phòng ban, chức vụ và các nghiệp vụ nhân sự trên một nền tảng thống nhất.
-            </p>
-
-            <div class="d-flex flex-wrap gap-2">
-                <span class="btn btn-gradient disabled-btn">
-                    <i class="bi bi-person-circle me-1"></i> Hồ sơ cá nhân
+    <!-- HERO -->
+    <section class="hero-pro mb-5">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-6">
+                <span class="hero-badge">
+                    <i class="bi bi-stars me-2"></i> HRM Platform
                 </span>
 
-                <span class="btn btn-outline-soft disabled-btn">
-                    <i class="bi bi-clock-history me-1"></i> Chấm công
-                </span>
+                <h1 class="hero-title mt-3">
+                    Nền tảng quản lý nhân sự hiện đại cho doanh nghiệp
+                </h1>
 
-                <span class="btn btn-outline-soft disabled-btn">
-                    <i class="bi bi-wallet2 me-1"></i> Lương
-                </span>
+                <p class="hero-desc">
+                    Tối ưu quản lý hồ sơ nhân viên, chấm công, nghỉ phép, bảng lương
+                    và vận hành nội bộ trên một hệ thống thống nhất, trực quan và chuyên nghiệp.
+                </p>
 
-                <span class="btn btn-outline-soft disabled-btn">
-                    <i class="bi bi-send me-1"></i> Nghỉ phép
-                </span>
+                <div class="hero-actions d-flex flex-wrap gap-3 mt-4">
+                    <a href="/Identity/Account/Login" class="btn hero-btn-primary">
+                        <i class="bi bi-box-arrow-in-right me-2"></i>Đăng nhập ngay
+                    </a>
+
+                    <a href="/Identity/Account/Register" class="btn hero-btn-outline">
+                        <i class="bi bi-person-plus me-2"></i>Tạo tài khoản
+                    </a>
+                </div>
+
+                <div class="hero-mini-info mt-4">
+                    <div><i class="bi bi-check-circle-fill"></i> Giao diện thân thiện</div>
+                    <div><i class="bi bi-check-circle-fill"></i> Quản lý tập trung</div>
+                    <div><i class="bi bi-check-circle-fill"></i> Phù hợp doanh nghiệp hiện đại</div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="hero-dashboard-card">
+                    <div class="dashboard-top">
+                        <div>
+                            <p class="dashboard-label">Tổng quan hệ thống</p>
+                            <h4>HR Management Dashboard</h4>
+                        </div>
+                        <span class="status-pill">Online</span>
+                    </div>
+
+                    <div class="dashboard-stats">
+                        <div class="dashboard-stat">
+                            <span>Tổng nhân viên</span>
+                            <strong>128</strong>
+                        </div>
+                        <div class="dashboard-stat">
+                            <span>Phòng ban</span>
+                            <strong>08</strong>
+                        </div>
+                        <div class="dashboard-stat">
+                            <span>Đơn nghỉ chờ duyệt</span>
+                            <strong>12</strong>
+                        </div>
+                        <div class="dashboard-stat">
+                            <span>Ngày công tháng này</span>
+                            <strong>22</strong>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-panel-grid">
+                        <div class="dashboard-panel">
+                            <h6>Chấm công hôm nay</h6>
+                            <p>92 nhân viên đã check-in</p>
+                        </div>
+
+                        <div class="dashboard-panel">
+                            <h6>Bảng lương</h6>
+                            <p>Đã cập nhật tháng 04/2026</p>
+                        </div>
+
+                        <div class="dashboard-panel wide">
+                            <h6>Thông báo nội bộ</h6>
+                            <p>Hệ thống hỗ trợ quản lý tập trung, minh bạch và tiết kiệm thời gian xử lý.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
 
-        <div class="col-lg-4">
-            <div class="intro-card h-100">
-                <h4 class="intro-title fw-bold mb-3">Giới thiệu hệ thống</h4>
-                <p class="mb-0 intro-text">
-                    Website quản lý nhân sự giúp doanh nghiệp theo dõi nhân viên, chấm công,
-                    nghỉ phép và bảng lương một cách trực quan, nhanh chóng và hiệu quả.
+    <!-- STATS -->
+    <section class="mb-5">
+        <div class="row g-4">
+            <div class="col-md-6 col-xl-3">
+                <div class="stat-card-pro">
+                    <div class="stat-icon blue">
+                        <i class="bi bi-people-fill"></i>
+                    </div>
+                    <div>
+                        <p>Tổng nhân viên</p>
+                        <h3>128</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-3">
+                <div class="stat-card-pro">
+                    <div class="stat-icon green">
+                        <i class="bi bi-diagram-3-fill"></i>
+                    </div>
+                    <div>
+                        <p>Phòng ban</p>
+                        <h3>08</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-3">
+                <div class="stat-card-pro">
+                    <div class="stat-icon orange">
+                        <i class="bi bi-calendar-check-fill"></i>
+                    </div>
+                    <div>
+                        <p>Đơn nghỉ phép</p>
+                        <h3>12</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-3">
+                <div class="stat-card-pro">
+                    <div class="stat-icon purple">
+                        <i class="bi bi-cash-stack"></i>
+                    </div>
+                    <div>
+                        <p>Bảng lương</p>
+                        <h3>04/2026</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROLE -->
+    <section class="mb-5">
+        <div class="section-heading text-center mb-4">
+            <span>Vai trò hệ thống</span>
+            <h2>Hỗ trợ đầy đủ cho từng nhóm người dùng</h2>
+            <p>Mỗi vai trò được tối ưu giao diện và chức năng phù hợp với nhu cầu thực tế.</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="role-card-pro">
+                    <div class="role-icon">
+                        <i class="bi bi-person-badge-fill"></i>
+                    </div>
+                    <h5>Nhân viên</h5>
+                    <p>Xem hồ sơ cá nhân, chấm công, gửi đơn nghỉ phép và theo dõi bảng lương của mình.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="role-card-pro">
+                    <div class="role-icon">
+                        <i class="bi bi-briefcase-fill"></i>
+                    </div>
+                    <h5>HR</h5>
+                    <p>Duyệt nghỉ phép, theo dõi chấm công, quản lý nhân viên và hỗ trợ tạo bảng lương.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="role-card-pro">
+                    <div class="role-icon">
+                        <i class="bi bi-shield-lock-fill"></i>
+                    </div>
+                    <h5>Admin</h5>
+                    <p>Quản trị hệ thống, phân quyền tài khoản và quản lý các danh mục nền của doanh nghiệp.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="mb-5">
+        <div class="section-heading text-center mb-4">
+            <span>Tính năng nổi bật</span>
+            <h2>Quản lý nhân sự toàn diện trên một nền tảng</h2>
+            <p>Thiết kế hiện đại, thao tác rõ ràng và hỗ trợ các nghiệp vụ cốt lõi trong doanh nghiệp.</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="feature-card-pro">
+                    <i class="bi bi-person-lines-fill"></i>
+                    <h5>Hồ sơ nhân viên</h5>
+                    <p>Lưu trữ, cập nhật và theo dõi thông tin nhân viên một cách nhanh chóng.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="feature-card-pro">
+                    <i class="bi bi-clock-history"></i>
+                    <h5>Chấm công</h5>
+                    <p>Ghi nhận giờ vào ra, ngày làm việc và hỗ trợ quản lý ca làm hiệu quả.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="feature-card-pro">
+                    <i class="bi bi-send-check-fill"></i>
+                    <h5>Nghỉ phép</h5>
+                    <p>Gửi yêu cầu nghỉ phép và phê duyệt minh bạch theo quy trình rõ ràng.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="feature-card-pro">
+                    <i class="bi bi-cash-coin"></i>
+                    <h5>Bảng lương</h5>
+                    <p>Quản lý lương cơ bản, thưởng, phạt và tổng hợp dữ liệu dễ dàng.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="feature-card-pro">
+                    <i class="bi bi-building"></i>
+                    <h5>Phòng ban & chức vụ</h5>
+                    <p>Phân loại nhân sự theo phòng ban, chức vụ và trình độ chuyên môn.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="feature-card-pro">
+                    <i class="bi bi-bar-chart-line-fill"></i>
+                    <h5>Báo cáo thống kê</h5>
+                    <p>Hỗ trợ theo dõi số liệu quan trọng phục vụ quản trị và ra quyết định.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OVERVIEW -->
+    <section class="mb-5">
+        <div class="row g-4">
+            <div class="col-lg-7">
+                <div class="content-box-pro h-100">
+                    <div class="content-box-header">
+                        <h4>Hoạt động gần đây</h4>
+                        <span>Cập nhật mới nhất</span>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div>
+                            <h6>Nguyễn Văn A đã gửi đơn nghỉ phép</h6>
+                            <p>Yêu cầu nghỉ phép từ 10/04/2026 đến 12/04/2026 đang chờ duyệt.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div>
+                            <h6>Phòng Kế toán đã cập nhật bảng lương tháng 04</h6>
+                            <p>Dữ liệu lương mới nhất đã được ghi nhận trên hệ thống.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div>
+                            <h6>95 nhân viên đã hoàn thành chấm công hôm nay</h6>
+                            <p>Hệ thống đang đồng bộ dữ liệu ca làm việc theo ngày.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="content-box-pro h-100">
+                    <div class="content-box-header">
+                        <h4>Thông báo hệ thống</h4>
+                        <span>Nội bộ doanh nghiệp</span>
+                    </div>
+
+                    <div class="notify-card">
+                        <strong>Bảo trì hệ thống</strong>
+                        <p>Hệ thống dự kiến bảo trì vào Chủ nhật từ 22:00 đến 23:30.</p>
+                    </div>
+
+                    <div class="notify-card">
+                        <strong>Cập nhật chức năng nghỉ phép</strong>
+                        <p>Đã bổ sung tính năng gửi email tự động khi phê duyệt hoặc từ chối đơn.</p>
+                    </div>
+
+                    <div class="notify-card">
+                        <strong>Nhắc nhở nhân viên</strong>
+                        <p>Vui lòng hoàn thành chấm công trước 08:30 mỗi ngày làm việc.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <div class="accordion custom-faq" id="faqAccordion">
+
+    <!-- 1 -->
+    <div class="accordion-item">
+        <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#faq1">
+            Hệ thống này dùng để làm gì?
+        </button>
+        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+                Hệ thống giúp quản lý nhân viên, chấm công, nghỉ phép và bảng lương một cách hiệu quả.
+            </div>
+        </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="accordion-item">
+        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq2">
+            Nhân viên có thể làm gì trên hệ thống?
+        </button>
+        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+                Nhân viên có thể xem hồ sơ, chấm công, gửi đơn nghỉ phép và theo dõi bảng lương cá nhân.
+            </div>
+        </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="accordion-item">
+        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq3">
+            HR có quyền gì trên hệ thống?
+        </button>
+        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+                HR có thể quản lý nhân viên, duyệt nghỉ phép, theo dõi chấm công và tạo bảng lương.
+            </div>
+        </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="accordion-item">
+        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq4">
+            Admin có chức năng gì?
+        </button>
+        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+                Admin có thể quản trị hệ thống, phân quyền tài khoản và quản lý các danh mục.
+            </div>
+        </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="accordion-item">
+        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq5">
+            Hệ thống có dùng được trên điện thoại không?
+        </button>
+        <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+                Có, hệ thống có thể truy cập trên điện thoại thông qua trình duyệt web.
+            </div>
+        </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="accordion-item">
+        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq6">
+            Tôi quên mật khẩu thì phải làm sao?
+        </button>
+        <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+                Bạn có thể sử dụng chức năng "Quên mật khẩu" ở trang đăng nhập để đặt lại mật khẩu.
+            </div>
+        </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="accordion-item">
+        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq7">
+            Dữ liệu có được bảo mật không?
+        </button>
+        <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+                Hệ thống sử dụng xác thực tài khoản và phân quyền để đảm bảo dữ liệu được bảo mật.
+            </div>
+        </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="accordion-item">
+        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq8">
+            Có thể xuất báo cáo không?
+        </button>
+        <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+                Có, hệ thống hỗ trợ thống kê và báo cáo phục vụ quản lý và ra quyết định.
+            </div>
+        </div>
+    </div>
+
+    <!-- 9 -->
+    <div class="accordion-item">
+        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq9">
+            Hệ thống có gửi email tự động không?
+        </button>
+        <div id="faq9" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+                Có, hệ thống có thể gửi email khi duyệt hoặc từ chối đơn nghỉ phép.
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <!-- CTA -->
+    <section class="cta-pro">
+        <div class="cta-pro-inner">
+            <div>
+                <span class="cta-mini">Bắt đầu ngay hôm nay</span>
+                <h2>Quản lý nhân sự hiệu quả hơn với nền tảng hiện đại</h2>
+                <p>
+                    Sẵn sàng tối ưu quy trình nhân sự, nâng cao hiệu suất và mang lại trải nghiệm tốt hơn cho doanh nghiệp.
                 </p>
             </div>
-        </div>
-    </div>
-</div>
 
-<div class="row g-4 mb-4">
-    <div class="col-md-4">
-        <div class="feature-card p-4 h-100">
-            <h4 class="fw-bold mb-3">
-                <i class="bi bi-person-badge me-2"></i>Nhân viên
-            </h4>
-            <p class="mb-0 text-muted">
-                Quản lý hồ sơ cá nhân, chấm công, nghỉ phép và theo dõi bảng lương.
-            </p>
+            <div class="cta-actions">
+                <a href="/Identity/Account/Register" class="btn hero-btn-primary">
+                    <i class="bi bi-rocket-takeoff me-2"></i>Dùng thử ngay
+                </a>
+            </div>
         </div>
-    </div>
-
-    <div class="col-md-4">
-        <div class="feature-card p-4 h-100">
-            <h4 class="fw-bold mb-3">
-                <i class="bi bi-briefcase me-2"></i>HR
-            </h4>
-            <p class="mb-0 text-muted">
-                Quản lý chấm công, duyệt nghỉ phép và tạo bảng lương cho nhân viên.
-            </p>
-        </div>
-    </div>
-
-    <div class="col-md-4">
-        <div class="feature-card p-4 h-100">
-            <h4 class="fw-bold mb-3">
-                <i class="bi bi-shield-lock me-2"></i>Admin
-            </h4>
-            <p class="mb-0 text-muted">
-                Quản trị hệ thống, phân quyền tài khoản và quản lý danh mục nền.
-            </p>
-        </div>
-    </div>
-</div>
-
-<div class="main-function-card p-4">
-    <h2 class="fw-bold mb-4">Chức năng chính</h2>
-
-    <div class="row g-3">
-        <div class="col-md-6 col-lg-4">
-            <div class="box-feature">Quản lý hồ sơ nhân viên</div>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-            <div class="box-feature">Chấm công theo ngày</div>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-            <div class="box-feature">Nghỉ phép & phê duyệt</div>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-            <div class="box-feature">Quản lý bảng lương</div>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-            <div class="box-feature">Quản lý danh mục</div>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-            <div class="box-feature">Báo cáo & thống kê</div>
-        </div>
-    </div>
+    </section>
 </div>

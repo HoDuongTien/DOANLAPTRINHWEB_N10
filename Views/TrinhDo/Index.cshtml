@@ -21,10 +21,17 @@
             <td>@item.MaTrinhDo</td>
             <td>@item.TenTrinhDo</td>
             <td>
-                <a asp-action="Details" asp-route-id="@item.MaTrinhDo" class="btn btn-info btn-sm">Chi tiết</a>
-                <a asp-action="Edit" asp-route-id="@item.MaTrinhDo" class="btn btn-warning btn-sm">Sửa</a>
-                <a asp-action="Delete" asp-route-id="@item.MaTrinhDo" class="btn btn-danger btn-sm">Xóa</a>
+                <div class=action-buttons>
+                    <a asp-action="Edit" asp-route-id="@item.MaTrinhDo" class="btn btn-edit">
+                        <i class="bi bi-pencil me-1"></i> Sửa
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@item.MaTrinhDo" class="btn btn-delete">
+                        <i class="bi bi-trash me-1"></i> Xóa </a>
+                    <a asp-action="Details" asp-route-id="@item.MaTrinhDo" class="btn btn-info">
+                        <i class="bi bi-info-circle me-1"></i> Chi tiết </a>
+                </div>
             </td>
+
         </tr>
     }
     </tbody>
