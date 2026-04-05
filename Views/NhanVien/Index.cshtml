@@ -6,6 +6,24 @@
     <a asp-action="Create" class="btn btn-success">+ Thêm nhân viên</a>
 </p>
 
+<form method="get" asp-action="Index" class="row g-2 mb-3">
+    <div class="col-md-5">
+        <input type="text"
+               name="search"
+               class="form-control"
+               placeholder="Nhập tên, số điện thoại, địa chỉ, phòng ban..."
+               value="@ViewBag.Search" />
+    </div>
+    <div class="col-md-auto">
+        <button type="submit" class="btn btn-primary">
+            <i class="bi bi-search"></i> Tìm kiếm
+        </button>
+        <a asp-action="Index" class="btn btn-secondary">
+            <i class="bi bi-arrow-clockwise"></i> Làm mới
+        </a>
+    </div>
+</form>
+
 <div class="table-responsive">
     <table class="table table-bordered table-striped table-hover align-middle">
         <thead class="table-dark">
@@ -32,17 +50,18 @@
                     <td>@item.PhongBan?.TenPhongBan</td>
                     <td>@item.ChucVu?.TenChucVu</td>
                     <td>
-                        <div class=action-buttons>
+                        <div class="action-buttons">
                             <a asp-action="Edit" asp-route-id="@item.MaNhanVien" class="btn btn-edit">
                                 <i class="bi bi-pencil me-1"></i> Sửa
                             </a>
                             <a asp-action="Delete" asp-route-id="@item.MaNhanVien" class="btn btn-delete">
-                                <i class="bi bi-trash me-1"></i> Xóa </a>
+                                <i class="bi bi-trash me-1"></i> Xóa
+                            </a>
                             <a asp-action="Details" asp-route-id="@item.MaNhanVien" class="btn btn-info">
-                                <i class="bi bi-info-circle me-1"></i> Chi tiết </a>
+                                <i class="bi bi-info-circle me-1"></i> Chi tiết
+                            </a>
                         </div>
                     </td>
-
                 </tr>
             }
         </tbody>

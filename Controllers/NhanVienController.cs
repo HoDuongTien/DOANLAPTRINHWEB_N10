@@ -17,7 +17,7 @@ namespace WebQLNhanSu.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        /*public async Task<IActionResult> Index()
         {
             var data = await _context.NhanViens
                 .Include(x => x.PhongBan)
@@ -26,7 +26,28 @@ namespace WebQLNhanSu.Controllers
                 .ToListAsync();
 
             return View(data);
-        }
+        } */
+        public async Task<IActionResult> Index(string search)
+       {
+            var query = _context.NhanViens
+               .Include(x => x.PhongBan)
+               .Include(x => x.ChucVu)
+               .Include(x => x.TrinhDo)
+               .AsQueryable();
+
+             if (!string.IsNullOrWhiteSpace(search))
+         {
+             query = query.Where(x =>
+             x.TenNhanVien.Contains(search) ||
+             x.SoDienThoai.Contains(search) ||
+             x.DiaChi.Contains(search) ||
+             x.PhongBan.TenPhongBan.Contains(search)
+         );
+    }
+
+    ViewBag.Search = search;
+    return View(await query.ToListAsync());
+}
 
         public async Task<IActionResult> Details(int id)
         {

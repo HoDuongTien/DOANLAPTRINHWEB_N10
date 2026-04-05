@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lm5nmSoYTk8=",
+  "dgSpecHash": "yRMApZ3+9bA=",
   "success": true,
-  "projectFilePath": "C:\\Users\\LAPTOP ASUS\\DOANLAPTRINHWEB_N10\\WebQLNhanSu.csproj",
+  "projectFilePath": "F:\\DOANLAPTRINHWEB_N10\\WebQLNhanSu.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\LAPTOP ASUS\\.nuget\\packages\\azure.core\\1.47.1\\azure.core.1.47.1.nupkg.sha512",
     "C:\\Users\\LAPTOP ASUS\\.nuget\\packages\\azure.identity\\1.14.2\\azure.identity.1.14.2.nupkg.sha512",

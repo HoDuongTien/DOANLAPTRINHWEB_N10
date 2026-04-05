@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\LAPTOP ASUS\\DOANLAPTRINHWEB_N10\\WebQLNhanSu.csproj": {}
+    "F:\\DOANLAPTRINHWEB_N10\\WebQLNhanSu.csproj": {}
   },
   "projects": {
-    "C:\\Users\\LAPTOP ASUS\\DOANLAPTRINHWEB_N10\\WebQLNhanSu.csproj": {
+    "F:\\DOANLAPTRINHWEB_N10\\WebQLNhanSu.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\LAPTOP ASUS\\DOANLAPTRINHWEB_N10\\WebQLNhanSu.csproj",
+        "projectUniqueName": "F:\\DOANLAPTRINHWEB_N10\\WebQLNhanSu.csproj",
         "projectName": "WebQLNhanSu",
-        "projectPath": "C:\\Users\\LAPTOP ASUS\\DOANLAPTRINHWEB_N10\\WebQLNhanSu.csproj",
+        "projectPath": "F:\\DOANLAPTRINHWEB_N10\\WebQLNhanSu.csproj",
         "packagesPath": "C:\\Users\\LAPTOP ASUS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\LAPTOP ASUS\\DOANLAPTRINHWEB_N10\\obj\\",
+        "outputPath": "F:\\DOANLAPTRINHWEB_N10\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
